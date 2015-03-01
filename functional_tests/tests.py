@@ -42,7 +42,7 @@ class NewVisitorTest(LiveServerTestCase):
 	#the page now lists "1: Buy peacock feathers"
 	    inputbox.send_keys(Keys.ENTER)
 	    edith_list_url = self.browser.current_url
-	    self.assertRegex(edith_list_url, '/list/.+')
+	    self.assertRegex(edith_list_url, '/lists/.+')
 	    self.check_for_row_in_list_table('1: Buy peacock feathers')
 	    
 	#A text box remains inviting further To-Do items naturally
@@ -57,7 +57,6 @@ class NewVisitorTest(LiveServerTestCase):
 	#Now a new user, Francis , comes to the site.
 
 	#We start a new browser session for Francis.
-
 	    self.browser.quit()
 	    self.browser = webdriver.Firefox()
 
@@ -73,6 +72,7 @@ class NewVisitorTest(LiveServerTestCase):
 	    inputbox.send_keys(Keys.ENTER)
 
 	#Francis gets his own URL
+	    francis_list_url = self.browser.current_url
 	    self.assertRegex(francis_list_url, '/lists/.+')
 	    self.assertNotEqual(francis_list_url, edith_list_url)
 
